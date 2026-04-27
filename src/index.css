@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Italianno&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cherry Reds — premium boutique cafe-bar design system.
+   Palette inspired by deep cherry burgundy, blush, dusty rose & warm cream.
+   All colors HSL. */
+
+@layer base {
+  :root {
+    --background: 35 33% 96%;          /* #F5F0ED warm cream */
+    --foreground: 351 82% 14%;         /* deep burgundy ink */
+
+    --card: 35 33% 98%;
+    --card-foreground: 351 82% 14%;
+
+    --popover: 35 33% 98%;
+    --popover-foreground: 351 82% 14%;
+
+    --primary: 351 82% 23%;            /* #6B0A23 cherry burgundy */
+    --primary-foreground: 35 33% 96%;
+
+    --secondary: 352 70% 90%;          /* #F9D0D5 soft blush */
+    --secondary-foreground: 351 82% 23%;
+
+    --muted: 35 25% 92%;
+    --muted-foreground: 351 20% 35%;
+
+    --accent: 351 32% 73%;             /* #DA9FA6 dusty rose */
+    --accent-foreground: 351 82% 14%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 35 33% 96%;
+
+    --border: 351 25% 86%;
+    --input: 351 25% 86%;
+    --ring: 351 82% 23%;
+
+    --radius: 0.75rem;
+
+    /* Brand signature tokens */
+    --cherry: 351 82% 23%;
+    --cherry-deep: 351 88% 15%;
+    --blush: 352 70% 90%;
+    --blush-soft: 348 71% 95%;
+    --rose: 351 32% 73%;
+    --cream: 35 33% 96%;
+    --gold: 35 55% 55%;
+
+    --gradient-hero: linear-gradient(180deg, hsl(var(--cherry-deep) / 0) 0%, hsl(var(--cherry-deep) / 0.45) 55%, hsl(var(--cherry-deep) / 0.85) 100%);
+    --gradient-blush: linear-gradient(135deg, hsl(var(--blush-soft)) 0%, hsl(var(--blush)) 100%);
+    --gradient-cherry: linear-gradient(135deg, hsl(var(--cherry)) 0%, hsl(var(--cherry-deep)) 100%);
+
+    --shadow-soft: 0 20px 60px -25px hsl(var(--cherry) / 0.25);
+    --shadow-elegant: 0 30px 80px -30px hsl(var(--cherry-deep) / 0.45);
+    --shadow-card: 0 10px 40px -20px hsl(var(--cherry) / 0.18);
+
+    --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --sidebar-background: 35 33% 96%;
+    --sidebar-foreground: 351 82% 14%;
+    --sidebar-primary: 351 82% 23%;
+    --sidebar-primary-foreground: 35 33% 96%;
+    --sidebar-accent: 352 70% 90%;
+    --sidebar-accent-foreground: 351 82% 23%;
+    --sidebar-border: 351 25% 86%;
+    --sidebar-ring: 351 82% 23%;
+  }
+
+  .dark {
+    --background: 351 40% 8%;
+    --foreground: 35 33% 96%;
+    --card: 351 40% 10%;
+    --card-foreground: 35 33% 96%;
+    --popover: 351 40% 10%;
+    --popover-foreground: 35 33% 96%;
+    --primary: 352 70% 90%;
+    --primary-foreground: 351 82% 14%;
+    --secondary: 351 30% 18%;
+    --secondary-foreground: 35 33% 96%;
+    --muted: 351 30% 16%;
+    --muted-foreground: 351 15% 70%;
+    --accent: 351 32% 50%;
+    --accent-foreground: 35 33% 96%;
+    --border: 351 30% 20%;
+    --input: 351 30% 20%;
+    --ring: 352 70% 80%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .font-script { font-family: 'Italianno', cursive; font-weight: 400; }
+}
+
+@layer utilities {
+  .container-tight { @apply max-w-6xl mx-auto px-6 md:px-10; }
+  .container-wide { @apply max-w-7xl mx-auto px-6 md:px-10; }
+  .text-balance { text-wrap: balance; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1s var(--transition-smooth), transform 1s var(--transition-smooth);
+  }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.22s; }
+  .reveal-delay-3 { transition-delay: 0.34s; }
+
+  .marquee {
+    display: flex;
+    gap: 4rem;
+    animation: marquee 38s linear infinite;
+    width: max-content;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .hover-lift {
+    transition: transform 0.5s var(--transition-smooth), box-shadow 0.5s var(--transition-smooth);
+  }
+  .hover-lift:hover { transform: translateY(-6px); box-shadow: var(--shadow-elegant); }
+
+  .grain::after {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.04 0 0 0 0 0.14 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.08; mix-blend-mode: multiply;
+  }
+}
