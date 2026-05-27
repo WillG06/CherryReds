@@ -8,8 +8,8 @@ const links = [
   { href: "/about", label: "About & Events" },
   { href: "/hire", label: "Room Hire" },
   { href: "/book", label: "Book" },
-  { href: "/#gallery", label: "Gallery" },
-  { href: "/#visit", label: "Visit" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/visit", label: "Visit" },
 ];
 
 interface Props {
